@@ -31,7 +31,7 @@ if (isset($_POST['submit'])) {
           $cookie_time = time() + (60 * 5);
           setcookie($cookie_name,json_encode($colors));
           setcookie('image_name',$file_name);
-          header("Location: http://localhost/Php%20Image%20Detection/");  
+          header("Location: http://localhost/PHP---color-detection/");  
 
         }
       }

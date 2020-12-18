@@ -1,25 +1,21 @@
 <?php
 
 $display_image = false;
+$color_precent = [];
 if (isset($_COOKIE['image_colors']) && isset($_COOKIE['image_name'])) {
-  $last_image = $_COOKIE['image_name'];
 
   $display_image = true;
+  $last_image = $_COOKIE['image_name'];
+  $all_colors = json_decode($_COOKIE['image_colors'], true);
+  $sum = array_sum($all_colors);
 
-    $finale_colors = json_decode($_COOKIE['image_colors'], true);
-  $sum = array_sum($finale_colors);
-
-  $precents = [];
-  foreach ($finale_colors as $key => $amount) {
-
-    $precents["#" . $key] = round(($amount / $sum) * 100, 2);
+  foreach ($all_colors as $key => $amount) {
+    $color_precent["#" . $key] = round(($amount / $sum) * 100, 2);
   }
+ $color_precent  = array_splice($color_precent, 0, 5, true);
+} 
+ 
 
-  $new_arr = array_splice($precents, 0, 5, true);
-} else {
-  $new_arr = [];
-  $display_image = false;
-}
 ?>
 
 <!DOCTYPE html>
@@ -50,8 +46,8 @@ if (isset($_COOKIE['image_colors']) && isset($_COOKIE['image_name'])) {
 
       <!-- -------------------- RGB col ----------------------------- -->
       <div class="col-lg-3">
-        <?php if ($new_arr) : ?>
-          <?php foreach ($new_arr as $key => $val) : ?>
+        <?php if ($color_precent) : ?>
+          <?php foreach ($color_precent as $key => $val) : ?>
             <div style="background-color:<?= $key ?>" ; class="card m-2 p-5">
               <div class="card-body">
 

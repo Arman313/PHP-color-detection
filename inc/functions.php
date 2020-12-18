@@ -38,7 +38,7 @@ function get_colors($image, $pixel_skip = 1)
          $pixel_color = imagecolorat($image, $x, $y);
          $rgb_arr = imagecolorsforindex($image, $pixel_color);
 
-         //  this code is from stackoverflow i wasn't familier with how to convert the RGB to Hexa
+         //  this code is from stackoverflow i wasn't familier with how to convert the RGB to Hex
          $red = round(round(($rgb_arr['red'] / 0x33)) * 0x33);
          $green = round(round(($rgb_arr['green'] / 0x33)) * 0x33);
          $blue = round(round(($rgb_arr['blue'] / 0x33)) * 0x33);
@@ -48,7 +48,6 @@ function get_colors($image, $pixel_skip = 1)
          if (array_key_exists($color_value_hexa, $colors_arr)) {
             $colors_arr[$color_value_hexa]++;
          } else {
-            // i put every color as an index
             $colors_arr[$color_value_hexa] = 1;
          }
       }
