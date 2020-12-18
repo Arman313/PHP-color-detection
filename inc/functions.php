@@ -38,11 +38,7 @@ function get_colors($image, $pixel_skip = 1)
          $pixel_color = imagecolorat($image, $x, $y);
          $rgb_arr = imagecolorsforindex($image, $pixel_color);
 
-         //  this code is from stackoverflow i wasn't familier with how to convert the RGB to Hex
-         $red = round(round(($rgb_arr['red'] / 0x33)) * 0x33);
-         $green = round(round(($rgb_arr['green'] / 0x33)) * 0x33);
-         $blue = round(round(($rgb_arr['blue'] / 0x33)) * 0x33);
-         $color_value_hexa = sprintf('%02X%02X%02X', $red, $green, $blue);
+         $color_value_hexa = convert_rgb($rgb_arr);
 
          // i'm checking that the hex color is in the the arr since we defined it as a key we use the array_key_exists
          if (array_key_exists($color_value_hexa, $colors_arr)) {
@@ -56,3 +52,12 @@ function get_colors($image, $pixel_skip = 1)
    return $colors_arr;
 }
 
+
+function convert_rgb($rgb_arr){
+
+            //  this code is from stackoverflow i wasn't familier with how to convert the RGB to Hex
+            $red = round(round(($rgb_arr['red'] / 0x33)) * 0x33);
+            $green = round(round(($rgb_arr['green'] / 0x33)) * 0x33);
+            $blue = round(round(($rgb_arr['blue'] / 0x33)) * 0x33);
+           return $color_value_hexa = sprintf('%02X%02X%02X', $red, $green, $blue);
+}
