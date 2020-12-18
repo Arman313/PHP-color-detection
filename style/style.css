@@ -1,0 +1,23 @@
+
+ .img-fluid {
+   height: 90vh !important;
+ max-width:  100vh;
+  }
+
+  .content{
+      border: 2px solid salmon;
+  }
+  .container-fluid{
+  height: 100vh;
+  padding: 1rem;
+      background-color: rgb(77, 77, 77);
+  }
+
+
+ .center{
+      position: absolute;
+      left: 40%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+
+ }
