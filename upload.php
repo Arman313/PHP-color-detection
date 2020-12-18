@@ -26,13 +26,6 @@ if (isset($_POST['submit'])) {
           $file_name = $_FILES['image']['name'];
           move_uploaded_file($_FILES['image']['tmp_name'], "images/$file_name");
           $colors = get_colors("images/$file_name", 1); 
-
-          $cookie_name = 'image_colors';
-          $cookie_time = time() + (60 * 5);
-          setcookie($cookie_name,json_encode($colors));
-          setcookie('image_name',$file_name);
-          header("Location: http://localhost/PHP---color-detection/");  
-
         }
       }
     }

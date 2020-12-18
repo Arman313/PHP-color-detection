@@ -1,20 +1,18 @@
 <?php
-
+require_once 'upload.php';
 $display_image = false;
 $color_precent = [];
-if (isset($_COOKIE['image_colors']) && isset($_COOKIE['image_name'])) {
+if (isset($colors) && isset($file_name)) {
 
   $display_image = true;
-  $last_image = $_COOKIE['image_name'];
-  $all_colors = json_decode($_COOKIE['image_colors'], true);
-  $sum = array_sum($all_colors);
+  $sum = array_sum($colors);
 
-  foreach ($all_colors as $key => $amount) {
+  foreach ($colors as $key => $amount) {
     $color_precent["#" . $key] = round(($amount / $sum) * 100, 2);
   }
- $color_precent  = array_splice($color_precent, 0, 5, true);
-} 
- 
+
+  $color_precent  = array_splice($color_precent, 0, 5, true);
+}
 
 ?>
 
@@ -32,19 +30,19 @@ if (isset($_COOKIE['image_colors']) && isset($_COOKIE['image_name'])) {
 <body>
   <div class="container-fluid ">
     <div class="row">
-      <!-- -----------image ---------------- -->
+      <!-- ------------------------- image ---------------- -->
       <div class="col-lg-9 text-center mt-3 content">
         <?php if (!$display_image) : ?>
           <div class="center">
             <p class="text-white">Please upload Image to start detection</p>
           </div>
         <?php else : ?>
-          <img src="images/<?= $last_image ?>" class="img-fluid" alt="image_to_detect">
+          <img src="images/<?= $file_name ?>" class="img-fluid" alt="image_to_detect">
         <?php endif ?>
       </div>
-      <!-- ---------------- image end ------------------- -->
+      <!-- ------------------------- image end -------------------------- -->
 
-      <!-- -------------------- RGB col ----------------------------- -->
+      <!-- ---------------------------- RGB col ----------------------------- -->
       <div class="col-lg-3">
         <?php if ($color_precent) : ?>
           <?php foreach ($color_precent as $key => $val) : ?>
@@ -64,7 +62,7 @@ if (isset($_COOKIE['image_colors']) && isset($_COOKIE['image_name'])) {
     <!-- ----------------- main form row ----------------- -->
     <div class="row">
       <div class="col-lg-12">
-        <form action="upload.php" method="POST" enctype="multipart/form-data">
+        <form action="" method="POST" enctype="multipart/form-data">
           <div class="row mt-3">
             <div class="col-lg-9">
               <input class="form-control" type="file" name="image" id="fileToUpload">
