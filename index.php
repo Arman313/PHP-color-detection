@@ -1,7 +1,9 @@
 <?php
-require_once 'upload.php';
+require_once 'inc/upload.php';
+
 $display_image = false;
 $color_precent = [];
+
 if (isset($colors) && isset($file_name)) {
 
   $display_image = true;
@@ -13,7 +15,6 @@ if (isset($colors) && isset($file_name)) {
 
   $color_precent  = array_splice($color_precent, 0, 5, true);
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -22,13 +23,13 @@ if (isset($colors) && isset($file_name)) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Color Detection PHP</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   <link rel="stylesheet" href="style/style.css">
 </head>
 
 <body>
-  <div class="container-fluid ">
+  <div class="container-fluid">
     <div class="row">
       <!-- ------------------------- image ---------------- -->
       <div class="col-lg-9 text-center mt-3 content">
@@ -46,10 +47,11 @@ if (isset($colors) && isset($file_name)) {
       <div class="col-lg-3">
         <?php if ($color_precent) : ?>
           <?php foreach ($color_precent as $key => $val) : ?>
-            <div style="background-color:<?= $key ?>" ; class="card m-2 p-5">
+            <div style="background-color:<?= $key ?>" ; class="card m-1">
               <div class="card-body">
-
-                <h5 class="card-title text-center"><?= $val ?>%</h5>
+                <h5 class="card-title text-color text-center mt-3"><?= $val ?>%</h5>
+               <?php    list($red, $green, $blue) = sscanf($key, "#%02x%02x%02x"); ?>
+                <p class="m-3 text-center text-color" >R:<?= $red ?> G:<?= $green ?> B:<?= $blue ?></p>
               </div>
             </div>
           <?php endforeach ?>

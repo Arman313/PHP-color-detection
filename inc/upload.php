@@ -21,7 +21,6 @@ if (isset($_POST['submit'])) {
         $file_ex = strtolower($file_info['extension']);
 
         if (in_array($file_ex, $ex)) {
-
           $error = false;
           $file_name = $_FILES['image']['name'];
           move_uploaded_file($_FILES['image']['tmp_name'], "images/$file_name");
