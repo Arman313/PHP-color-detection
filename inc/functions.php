@@ -3,9 +3,8 @@
 /*
 When i was trying to learn about 
 how to aporach this task i stumbled across some functions around the web
-that "scan the image" so i have written my own function. it is a combination of diffrent functinos
+that "scan the image" so i have written my own function. it is a combination of different  functions 
 following the same logic of looping through the x axis and than the y axis
-solutions i found on the web
 */
 
 /**
